@@ -1,4 +1,4 @@
-# Web WhatsappBotFree
+# Web Whatsapp Bot Free
 C# ile excel veya vfc dosyalarındaki datalara web whatsapp üzerinden yazı mesajı gönderme uygulamsı açık kaynak kodlu versiyonudur.
 ## Başlatmak ve test için
 Projeyi indirin ve Visual Studio ile açın projenizin x86 olarak ayarlayın ve nuget ile 
