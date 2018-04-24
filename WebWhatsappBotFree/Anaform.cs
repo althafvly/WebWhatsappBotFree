@@ -47,7 +47,7 @@ namespace WebWhatsappBotFree
             InitializeComponent();
             try
             {
-                Xpcom.Initialize("eFirefox");
+                Xpcom.Initialize("Firefox");
                 Gecko.GeckoPreferences.User["general.useragent.override"] = "Mozilla / 5.0(Windows NT 10.0; WOW64 ; rv:54.0) Gecko/20100101 Firefox/54.0";
                 Gecko.GeckoPreferences.User["intl.accept_languages"] = "Tr-tr";
             }
