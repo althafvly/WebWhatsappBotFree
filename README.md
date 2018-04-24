@@ -5,7 +5,7 @@ Projeyi indirin ve Visual Studio ile açın projenizin x86 olarak ayarlayın ve 
 ## Nuget Package Manager Console:
 - **PM>`Install-Package System.Data.SQLite -Version 1.0.108`**
 - **PM>`Install-Package Microsoft.Office.Interop.Excel -Version 15.0.4795.1000`**
-- **PM>`IInstall-Package Geckofx45 -Version 45.0.34`**
+- **PM>`Install-Package Geckofx45 -Version 45.0.34`**
 
 paketlerini yükledikten sonra derleyin ve çalıştırın.
 
