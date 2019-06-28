@@ -1,3 +1,9 @@
+NOTE : This app is still in wip (not working correctly)
+
+
+Bug : Browser not clicking enter after url (https://web.whatsapp.com/send?phone=+91*&text=hello) is passed
+
+
 # Web Whatsapp Bot Free
 This is a C# application that sends text message via WebWhatsapp to data in excel or vfc files.
 ## To start and test
@@ -18,4 +24,3 @@ compile and run it.
 - [Excel](https://www.nuget.org/packages/Microsoft.Office.Interop.Excel/)
 - [Sqlite](https://system.data.sqlite.org/)
 - [Geckofx45](https://bitbucket.org/geckofx/)
-- [SadeceWeb](http://www.sadeceweb.com/)
