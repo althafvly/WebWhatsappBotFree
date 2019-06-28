@@ -3,6 +3,7 @@ NOTE : This app is still in wip (not working correctly)
 
 Bug : Browser not clicking enter after url (https://web.whatsapp.com/send?phone=+91*&text=hello) is passed
 
+Reason : Web Whatsapp Enter-key class,name,id,etc.. changes frequently on each use, so its difficult click a button without knowing its class,id or name
 
 # Web Whatsapp Bot Free
 This is a C# application that sends text message via WebWhatsapp to data in excel or vfc files.
