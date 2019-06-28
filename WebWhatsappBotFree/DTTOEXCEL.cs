@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
-//esrefyildirici.com
+
 namespace WebWhatsappBotFree
 {
     class DTTOEXCEL

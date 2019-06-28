@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//esrefyildirici.com
+
 namespace WebWhatsappBotFree
 {
     static class Program
     {
         /// <summary>
-        /// Uygulamanın ana girdi noktası.
+        /// The main entry point of the application..
         /// </summary>
         [STAThread]
         static void Main()

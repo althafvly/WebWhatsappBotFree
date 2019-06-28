@@ -3,14 +3,14 @@
     partial class loadform
     {
         /// <summary>
-        ///Gerekli tasarımcı değişkeni.
+        ///Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///Kullanılan tüm kaynakları temizleyin.
+        /// Clean all used resources.
         /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
+        ///<param name="disposing">true if managed resources must be dispose; otherwise false..</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer üretilen kod
+        #region Windows Form Designer Generated Code
 
         /// <summary>
-        /// Tasarımcı desteği için gerekli metot - bu metodun 
-        ///içeriğini kod düzenleyici ile değiştirmeyin.
+        /// Method needed for designer support - this method
+        ///content with the code editor..
         /// </summary>
         private void InitializeComponent()
         {
@@ -57,7 +57,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Web Whatsapp Bot Açılıyor";
+            this.Text = "Opening Web Whatsapp Bot";
             this.TransparencyKey = System.Drawing.Color.White;
             this.ResumeLayout(false);
 

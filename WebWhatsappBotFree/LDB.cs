@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
-//esrefyildirici.com
+
 namespace WebWhatsappBotFree
 {
     class LDB

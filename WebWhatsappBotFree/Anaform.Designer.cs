@@ -1,4 +1,4 @@
-﻿namespace WebWhatsappBotFree//esrefyildirici.com
+﻿namespace WebWhatsappBotFree
 {
     partial class Anaform
     {
@@ -184,14 +184,14 @@
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label2.Location = new System.Drawing.Point(41, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(201, 41);
+            this.label2.Size = new System.Drawing.Size(161, 41);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Hoşgeldiniz";
+            this.label2.Text = "Welcome";
             // 
             // altbarpanel
             // 
             this.altbarpanel.BackColor = System.Drawing.Color.Transparent;
-            this.altbarpanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("altbarpanel.BackgroundImage")));
+            this.altbarpanel.BackgroundImage = global::WebWhatsappBotFree.Properties.Resources.altbar;
             this.altbarpanel.Controls.Add(this.panel5);
             this.altbarpanel.Controls.Add(this.panel2);
             this.altbarpanel.Controls.Add(this.panel1);
@@ -256,25 +256,25 @@
             this.acToolStripMenuItem,
             this.kapatToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(115, 48);
             // 
             // acToolStripMenuItem
             // 
             this.acToolStripMenuItem.Name = "acToolStripMenuItem";
-            this.acToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.acToolStripMenuItem.Text = "Aç";
+            this.acToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.acToolStripMenuItem.Text = "Hungry";
             this.acToolStripMenuItem.Click += new System.EventHandler(this.AcToolStripMenuItem_Click);
             // 
             // kapatToolStripMenuItem
             // 
             this.kapatToolStripMenuItem.Name = "kapatToolStripMenuItem";
-            this.kapatToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.kapatToolStripMenuItem.Text = "Kapat";
+            this.kapatToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.kapatToolStripMenuItem.Text = "Close";
             this.kapatToolStripMenuItem.Click += new System.EventHandler(this.KapatToolStripMenuItem_Click);
             // 
             // fld
             // 
-            this.fld.Description = "Başarılı Rapor Dosyasının Kaydedileceği Klasörü Seçiniz";
+            this.fld.Description = "Select Folder to Save Successful Report File";
             // 
             // notifyIcon1
             // 
@@ -291,13 +291,18 @@
             // 
             // geckoWebBrowser1
             // 
+            this.geckoWebBrowser1.AllowDrop = true;
+            this.geckoWebBrowser1.ConsoleMessageEventReceivesConsoleLogCalls = true;
             this.geckoWebBrowser1.FrameEventsPropagateToMainWindow = false;
+            this.geckoWebBrowser1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.geckoWebBrowser1.Location = new System.Drawing.Point(751, 185);
             this.geckoWebBrowser1.Name = "geckoWebBrowser1";
             this.geckoWebBrowser1.Size = new System.Drawing.Size(93, 74);
             this.geckoWebBrowser1.TabIndex = 132;
             this.geckoWebBrowser1.UseHttpActivityObserver = false;
+            this.geckoWebBrowser1.Visible = false;
             this.geckoWebBrowser1.ShowContextMenu += new System.EventHandler<Gecko.GeckoContextMenuEventArgs>(this.GeckoWebBrowser1_ShowContextMenu);
+            this.geckoWebBrowser1.Enter += new System.EventHandler(this.Anaform_Load);
             // 
             // panelinternetyok
             // 
@@ -316,9 +321,9 @@
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(-99, 110);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(274, 19);
+            this.label1.Size = new System.Drawing.Size(252, 19);
             this.label1.TabIndex = 3;
-            this.label1.Text = "İnternet Bağlantınızı Kontrol Ediniz";
+            this.label1.Text = "Check Your Internet Connection";
             // 
             // pictureBox1
             // 
@@ -413,7 +418,7 @@
             // 
             this.grpadi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.grpadi.FillWeight = 150F;
-            this.grpadi.HeaderText = "Grup Adı";
+            this.grpadi.HeaderText = "Group Name";
             this.grpadi.MinimumWidth = 100;
             this.grpadi.Name = "grpadi";
             // 
@@ -421,14 +426,14 @@
             // 
             this.Mesaj.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Mesaj.FillWeight = 150F;
-            this.Mesaj.HeaderText = "Mesaj";
+            this.Mesaj.HeaderText = "Message";
             this.Mesaj.MinimumWidth = 150;
             this.Mesaj.Name = "Mesaj";
             // 
             // basarili
             // 
             this.basarili.FillWeight = 60F;
-            this.basarili.HeaderText = "Başarılı";
+            this.basarili.HeaderText = "Successful";
             this.basarili.MinimumWidth = 60;
             this.basarili.Name = "basarili";
             this.basarili.Width = 60;
@@ -436,7 +441,7 @@
             // basarisiz
             // 
             this.basarisiz.FillWeight = 60F;
-            this.basarisiz.HeaderText = "Başarısız";
+            this.basarisiz.HeaderText = "Unsuccessful";
             this.basarisiz.MinimumWidth = 60;
             this.basarisiz.Name = "basarisiz";
             this.basarisiz.Width = 60;
@@ -444,7 +449,7 @@
             // siradaki
             // 
             this.siradaki.FillWeight = 60F;
-            this.siradaki.HeaderText = "Sıradaki";
+            this.siradaki.HeaderText = "Next";
             this.siradaki.MinimumWidth = 60;
             this.siradaki.Name = "siradaki";
             this.siradaki.Width = 60;
@@ -452,7 +457,7 @@
             // basltarih
             // 
             this.basltarih.FillWeight = 110F;
-            this.basltarih.HeaderText = "Başlangıç Tarihi";
+            this.basltarih.HeaderText = "Starting date";
             this.basltarih.MinimumWidth = 110;
             this.basltarih.Name = "basltarih";
             this.basltarih.Width = 110;
@@ -549,7 +554,7 @@
             // 
             this.islemloglabel.AutoSize = true;
             this.islemloglabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.islemloglabel.Font = new System.Drawing.Font("Myriad Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.islemloglabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.islemloglabel.ForeColor = System.Drawing.Color.DimGray;
             this.islemloglabel.Location = new System.Drawing.Point(3, 40);
             this.islemloglabel.Name = "islemloglabel";
@@ -562,13 +567,13 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(135)))));
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(838, 40);
             this.label8.TabIndex = 4;
-            this.label8.Text = "Lütfen Programı Kapatmayınız...";
+            this.label8.Text = "Please do not close the program ...";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tableLayoutPanel4
@@ -595,7 +600,7 @@
             // 
             this.gecersizileti.AutoSize = true;
             this.gecersizileti.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gecersizileti.Font = new System.Drawing.Font("Myriad Pro", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gecersizileti.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gecersizileti.ForeColor = System.Drawing.Color.White;
             this.gecersizileti.Location = new System.Drawing.Point(569, 32);
             this.gecersizileti.Name = "gecersizileti";
@@ -608,7 +613,7 @@
             // 
             this.gecerlileti.AutoSize = true;
             this.gecerlileti.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gecerlileti.Font = new System.Drawing.Font("Myriad Pro", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gecerlileti.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gecerlileti.ForeColor = System.Drawing.Color.White;
             this.gecerlileti.Location = new System.Drawing.Point(286, 32);
             this.gecerlileti.Name = "gecerlileti";
@@ -621,7 +626,7 @@
             // 
             this.siradakinumaralabel.AutoSize = true;
             this.siradakinumaralabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siradakinumaralabel.Font = new System.Drawing.Font("Myriad Pro", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siradakinumaralabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siradakinumaralabel.ForeColor = System.Drawing.Color.White;
             this.siradakinumaralabel.Location = new System.Drawing.Point(3, 32);
             this.siradakinumaralabel.Name = "siradakinumaralabel";
@@ -634,39 +639,39 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(277, 32);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Sıradaki Numaralar";
+            this.label5.Text = "Next Numbers";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(286, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(277, 32);
             this.label6.TabIndex = 1;
-            this.label6.Text = "Geçerli İleti";
+            this.label6.Text = "Current Message";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(569, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(278, 32);
             this.label7.TabIndex = 2;
-            this.label7.Text = "Geçersiz ileti";
+            this.label7.Text = "Invalid message";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // barkoduokutpnl
@@ -727,13 +732,13 @@
             // 
             this.sondurum.AutoSize = true;
             this.sondurum.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sondurum.Font = new System.Drawing.Font("Myriad Pro", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.sondurum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.sondurum.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.sondurum.Location = new System.Drawing.Point(3, 0);
             this.sondurum.Name = "sondurum";
             this.sondurum.Size = new System.Drawing.Size(580, 32);
             this.sondurum.TabIndex = 8;
-            this.sondurum.Text = "Lütfen bekleyiniz...";
+            this.sondurum.Text = "Please wait...";
             this.sondurum.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // anasayfagit
@@ -775,13 +780,13 @@
             // yenimesajsablonaditextBox
             // 
             this.yenimesajsablonaditextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yenimesajsablonaditextBox.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yenimesajsablonaditextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yenimesajsablonaditextBox.ForeColor = System.Drawing.Color.DimGray;
             this.yenimesajsablonaditextBox.Location = new System.Drawing.Point(19, 10);
             this.yenimesajsablonaditextBox.Margin = new System.Windows.Forms.Padding(0);
             this.yenimesajsablonaditextBox.MaxLength = 50;
             this.yenimesajsablonaditextBox.Name = "yenimesajsablonaditextBox";
-            this.yenimesajsablonaditextBox.Size = new System.Drawing.Size(248, 26);
+            this.yenimesajsablonaditextBox.Size = new System.Drawing.Size(248, 24);
             this.yenimesajsablonaditextBox.TabIndex = 3;
             this.yenimesajsablonaditextBox.Text = "Şablon adı";
             this.yenimesajsablonaditextBox.Enter += new System.EventHandler(this.YenimesajsablonaditextBox_Enter);
@@ -799,7 +804,7 @@
             // yenimesajtextbox
             // 
             this.yenimesajtextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yenimesajtextbox.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yenimesajtextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yenimesajtextbox.ForeColor = System.Drawing.Color.DimGray;
             this.yenimesajtextbox.Location = new System.Drawing.Point(16, 11);
             this.yenimesajtextbox.Margin = new System.Windows.Forms.Padding(0);
@@ -934,7 +939,7 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "mesaj";
+            this.Column1.HeaderText = "message";
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
             // 
@@ -971,10 +976,10 @@
             // yuklenenkisisayisibildirir
             // 
             this.yuklenenkisisayisibildirir.AutoSize = true;
-            this.yuklenenkisisayisibildirir.Font = new System.Drawing.Font("Myriad Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.yuklenenkisisayisibildirir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.yuklenenkisisayisibildirir.Location = new System.Drawing.Point(425, 454);
             this.yuklenenkisisayisibildirir.Name = "yuklenenkisisayisibildirir";
-            this.yuklenenkisisayisibildirir.Size = new System.Drawing.Size(0, 19);
+            this.yuklenenkisisayisibildirir.Size = new System.Drawing.Size(0, 20);
             this.yuklenenkisisayisibildirir.TabIndex = 13;
             // 
             // dataGridView1
@@ -992,7 +997,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Myriad Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1009,7 +1014,7 @@
             this.Columnkullan});
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Minion Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1055,7 +1060,7 @@
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn2.FillWeight = 120F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Adı";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Ordinary";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
@@ -1063,14 +1068,14 @@
             // 
             this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridViewTextBoxColumn3.FillWeight = 120F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Soyadı";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Last name";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // ColumnTelefon
             // 
             this.ColumnTelefon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTelefon.HeaderText = "Telefon";
+            this.ColumnTelefon.HeaderText = "Telephone";
             this.ColumnTelefon.Name = "ColumnTelefon";
             this.ColumnTelefon.ReadOnly = true;
             // 
@@ -1087,7 +1092,7 @@
             // 
             // Columnkullan
             // 
-            this.Columnkullan.HeaderText = "kullanılsınmı";
+            this.Columnkullan.HeaderText = "use";
             this.Columnkullan.Name = "Columnkullan";
             this.Columnkullan.ReadOnly = true;
             this.Columnkullan.Visible = false;
@@ -1227,7 +1232,7 @@
             // 
             this.Columnadi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Columnadi.FillWeight = 30F;
-            this.Columnadi.HeaderText = "Sıra";
+            this.Columnadi.HeaderText = "Must";
             this.Columnadi.MinimumWidth = 30;
             this.Columnadi.Name = "Columnadi";
             this.Columnadi.ReadOnly = true;
@@ -1237,7 +1242,7 @@
             // 
             this.Columnsoyadi.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Columnsoyadi.FillWeight = 120F;
-            this.Columnsoyadi.HeaderText = "Grupadı";
+            this.Columnsoyadi.HeaderText = "Group Name";
             this.Columnsoyadi.Name = "Columnsoyadi";
             this.Columnsoyadi.ReadOnly = true;
             // 
@@ -1283,13 +1288,13 @@
             // yenigrupaditextBox
             // 
             this.yenigrupaditextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.yenigrupaditextBox.Font = new System.Drawing.Font("Myriad Pro", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yenigrupaditextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.yenigrupaditextBox.ForeColor = System.Drawing.Color.DimGray;
             this.yenigrupaditextBox.Location = new System.Drawing.Point(21, 9);
             this.yenigrupaditextBox.Margin = new System.Windows.Forms.Padding(0);
             this.yenigrupaditextBox.MaxLength = 50;
             this.yenigrupaditextBox.Name = "yenigrupaditextBox";
-            this.yenigrupaditextBox.Size = new System.Drawing.Size(261, 26);
+            this.yenigrupaditextBox.Size = new System.Drawing.Size(261, 24);
             this.yenigrupaditextBox.TabIndex = 2;
             // 
             // Anaform
@@ -1312,7 +1317,7 @@
             this.MaximizeBox = false;
             this.Name = "Anaform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Web Whatsapp Bot Free";
+            this.Text = "Web Whatsapp Bot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Anaform_FormClosing);
             this.Load += new System.EventHandler(this.Anaform_Load);
             this.VisibleChanged += new System.EventHandler(this.Anaform_VisibleChanged);

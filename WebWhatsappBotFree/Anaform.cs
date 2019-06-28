@@ -17,7 +17,8 @@ using Gecko.DOM;
 using Gecko.Events;
 using Gecko;
 using System.Data.SQLite;
-//esrefyildirici.com
+using OpenQA.Selenium;
+
 namespace WebWhatsappBotFree
 {
    
@@ -49,15 +50,16 @@ namespace WebWhatsappBotFree
             {
                 Xpcom.Initialize("Firefox");
                 Gecko.GeckoPreferences.User["general.useragent.override"] = "Mozilla / 5.0(Windows NT 10.0; WOW64 ; rv:54.0) Gecko/20100101 Firefox/54.0";
-                Gecko.GeckoPreferences.User["intl.accept_languages"] = "Tr-tr";
+                Gecko.GeckoPreferences.User["intl.accept_languages"] = "EN-us";
             }
-            catch { MessageBox.Show("Firefox Klasörü Bozuk veya Silinmiş! \nLütfen Yönetici olarak çalıştırmayı deneyiniz", "Hata kodu:1",MessageBoxButtons.OK,MessageBoxIcon.Error);Application.Exit(); }
+            catch { MessageBox.Show("Firefox Folder Corrupted or Deleted! \nPlease try to run as Administrator", "Error code: 1", MessageBoxButtons.OK,MessageBoxIcon.Error);Application.Exit(); }
         }
 
         private void AcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
+
         }
 
         private void KapatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,9 +79,9 @@ namespace WebWhatsappBotFree
         {
             try
             {
-#pragma warning disable CS0618 // Tür veya üye eski
+#pragma warning disable CS0618 // Type or member old
                 IPHostEntry ipHe = Dns.GetHostByName("www.google.com");
-#pragma warning restore CS0618 // Tür veya üye eski
+#pragma warning restore CS0618 // Type or member old
                 return false;
             }
             catch
@@ -147,8 +149,6 @@ namespace WebWhatsappBotFree
         private void Anaform_Load(object sender, EventArgs e)
         {
 
-            geckoWebBrowser1.Location = new Point(1000, 1500);
-            geckoWebBrowser1.Size = new Size(500, 500);
             if (System.IO.File.Exists("wwbf.sqlite") == false)
             {
                SQLiteConnection.CreateFile("MyDatabase.sqlite");
@@ -183,7 +183,7 @@ namespace WebWhatsappBotFree
             string yenigrupadi = yenigrupaditextBox.Text.Trim();
             if (yenigrupadi.Length < 4)
             {
-                MessageBox.Show("4 karakterden küçük grup adı oluşturulamaz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("Cannot create group name less than 4 characters", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             else if (LDB.sorgula("select count(grupadi) from tbl_gruplar where grupadi='" + yenigrupadi + "' ") == "0")
             {
@@ -196,13 +196,13 @@ namespace WebWhatsappBotFree
                 }
                 else
                 {
-                    MessageBox.Show(yenigrupadi + " grup adı eklenemedi lütfen veritabanınızı kontrol ediniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show(yenigrupadi + " Could not add group name please check your database!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
 
             }
             else
             {
-                MessageBox.Show(yenigrupadi + " grup adını daha önce kullanmıştınız karışıklık olmaması için yeni grup adınında değişik yapınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show(yenigrupadi + " you have already used the group name to avoid confusion, change the name of the new group!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         
     }
@@ -214,7 +214,7 @@ namespace WebWhatsappBotFree
 
                 string grupidsi = grulardataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string grupadi = grulardataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
-                DialogResult dialogResult = MessageBox.Show(grupadi + " Grubunu silmek, içindeki tüm numaraları ve geçmiş raporlarıda silmek anlamına geliyor. \n \n Yinede silmek istiyormusunuz? ", "Uyarı!", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show(grupadi + " Deleting a group means deleting all numbers and history reports.. \n \n Do you still want to delete ? ", "Warning!", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     LDB.sqlcalistir("Delete  tbl_log.* FROM (tbl_gruplar INNER JOIN tbl_islemler ON tbl_gruplar.id = tbl_islemler.grupid) INNER JOIN tbl_log ON tbl_islemler.id = tbl_log.islemid WHERE tbl_gruplar.id =" + grupidsi);
@@ -281,7 +281,7 @@ namespace WebWhatsappBotFree
             }
             else
             {
-                MessageBox.Show("Seçili Grup olmadan devam edemezsiniz, hiç grup oluşturmadıysanız bir grup oluşturup seçiniz", "Uyarı!");
+                MessageBox.Show("You cannot continue without the selected Group, if you have not created any groups, create and select a group", "Warning!");
             }
         }
 
@@ -338,12 +338,12 @@ namespace WebWhatsappBotFree
         private void Excelveyavcfdennumarayuklebtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "Excel Dosyası (*.xlsx, *.xls)|*.xlsx; *.xls|Vcf Dosyası(*.vcf)|*.vcf;|Tüm Dosyalar(*.*)|*.*";
+            file.Filter = "Excel File (* .xlsx, * .xls) | * .xlsx; * .xls | Vcf File (*. vcf) | * .vcf; | All Files (*. *) | *. *";
             file.FilterIndex = 1;
             file.RestoreDirectory = true;
             file.CheckFileExists = false;
             file.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            file.Title = "Excel Dosyası Seçiniz..";
+            file.Title = "Select Excel File ..";
             file.Multiselect = false;
 
             if (file.ShowDialog() == DialogResult.OK)
@@ -409,11 +409,11 @@ namespace WebWhatsappBotFree
                             Exceliramdensil(ws);
                             Exceliramdensil(wb);
                             Exceliramdensil(xla);
-                            MessageBox.Show("Yükleme bitti");
+                            MessageBox.Show("Downloading is done");
                         }
                         catch (Exception hataaciklamasi)
                         {
-                            MessageBox.Show("excel den numaralar yüklenemedi n " + hataaciklamasi.ToString(), "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Failed to load numbers from excel n " + hataaciklamasi.ToString(), "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         finally
                         {
@@ -453,7 +453,7 @@ namespace WebWhatsappBotFree
                 VcflisteGuncelle();
 
             }
-            catch { MessageBox.Show("vcf den numaralar yüklenemedi", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            catch { MessageBox.Show("Failed to load numbers from vcf", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
         }
         static void Nparcala(string Nbaslayan)
         {
@@ -514,9 +514,9 @@ namespace WebWhatsappBotFree
                 numaralardengeridonbtn.Visible = true;
                 numaralariptalanasayfabtn.Visible = true;
                 numaralarduzenlendidevametbtn.Enabled = true;
-                MessageBox.Show("Yükleme bitti");
+                MessageBox.Show("Downloading is done");
             }
-            catch { MessageBox.Show("vcf den numaralar yüklenemedi", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            catch { MessageBox.Show("Failed to load numbers from vcf", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
         }
         public static void Exceliramdensil(object obj)
@@ -544,7 +544,7 @@ namespace WebWhatsappBotFree
             }
             else
             {
-                MessageBox.Show("Seçili grupta hiç aktif numarayok bu aktif gruba numara eklemeden devam edemezsiniz", "Uyarı!");
+                MessageBox.Show("No active numbers in the selected group, you cannot continue without adding numbers to this active group", "Warning!");
             }
         }
 
@@ -609,7 +609,7 @@ namespace WebWhatsappBotFree
                 CookieMan = Xpcom.GetService<nsICookieManager>("@mozilla.org/cookiemanager;1");
                 CookieMan = Xpcom.QueryInterface<nsICookieManager>(CookieMan);
                 CookieMan.RemoveAll();
-                MessageBox.Show("Yeni gönderim başlatılıyor3");
+                MessageBox.Show("Starting new post");
                 Gizle();
                 barkoduokutpnl.Visible = true;
                 Wpbarkodvemesaj();
@@ -677,7 +677,7 @@ namespace WebWhatsappBotFree
                             Application.DoEvents();
                             panelbarkodkenari.Visible = true;
                             Application.DoEvents();
-                            sondurum.Text = "Web Whatsapp barkodunu telefonunuzdan okutmanız gerekiyor";
+                            sondurum.Text = "You need to have the Web Whatsapp barcode read from your phone";
                             Application.DoEvents();
                             barkoduokutpnl.Visible = true;
                             Application.DoEvents();
@@ -689,7 +689,7 @@ namespace WebWhatsappBotFree
                 catch
                 {
                     Application.DoEvents();
-                    panelbarkodkenari.Visible = false;
+                    panelbarkodkenari.Visible = true;
                     Application.DoEvents();
                     try
                     {
@@ -718,7 +718,7 @@ namespace WebWhatsappBotFree
             islemisonlandir = false;
             geckoWebBrowser1.Navigate("https://web.whatsapp.com/");
             Application.DoEvents();
-            sondurum.Text = "Telefonunuzun internet bağlatısını kontrol edin ve hazırlanın.";
+            sondurum.Text = "Check your phone's Internet connection and get ready.";
             Wpkontroll();
             Application.DoEvents();
                 Application.DoEvents();
@@ -740,8 +740,16 @@ namespace WebWhatsappBotFree
                     Wpkontroll();
                     Application.DoEvents();
                     geckoWebBrowser1.Navigate("https://web.whatsapp.com/send?phone=+" + rowp.Cells[3].Value.ToString().Trim() + "&text=" + selectmesaj);
+                    int[] oddArray = new int[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21 };
+                    foreach (int num in oddArray)
+                    {
+                        SendKeys.SendWait("{ENTER}");
+                        Application.DoEvents();
+                        SendKeys.SendWait("{~}");
+                        Application.DoEvents();
+                    }
                     Application.DoEvents();
-                    islemloglabel.Text = rowp.Cells[3].Value.ToString().Trim() + " numarasına mesaj atmayı deniyor";
+                    islemloglabel.Text = rowp.Cells[3].Value.ToString().Trim() + " Trying to text";
                     Application.DoEvents();
                     Wpkontroll();
                     Application.DoEvents();
@@ -765,7 +773,7 @@ namespace WebWhatsappBotFree
                             GeckoElementCollection tagsCollection = geckoWebBrowser1.Document.GetElementsByTagName("button");
                             foreach (GeckoElement currentTag in tagsCollection)
                             {
-                                if (currentTag.GetAttribute("class").Equals("_2lkdt"))
+                                if (currentTag.GetAttribute("id").Equals(""))
                                 {
                                     Application.DoEvents();
                                     ((GeckoHtmlElement)currentTag).Click();
@@ -794,7 +802,7 @@ namespace WebWhatsappBotFree
 
                 }
             }
-            MessageBox.Show(gecerlileti.Text.ToString().Trim() + " başarılı mesaj atıldı", "Tebrikler İşlem Tamamlandı");
+            MessageBox.Show(gecerlileti.Text.ToString().Trim() + " successful posts", "Congratulations Action Complete");
             islemloglabel.Text = "";
             Gizle();
             RAPORLAR.Visible = true;
@@ -816,11 +824,11 @@ namespace WebWhatsappBotFree
             string yenimesajsablonadi = yenimesajsablonaditextBox.Text.Trim();
             if (yenimesajj.Length < 3)
             {
-                MessageBox.Show("3 karakterden küçük mesaj oluşturulamaz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("Messages less than 3 characters cannot be created", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             else if (yenimesajsablonadi.Length < 3)
             {
-                MessageBox.Show("3 karakterden küçük şablon adı oluşturulamaz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("Template name less than 3 characters cannot be created", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             else if (LDB.sorgula("select count(baslik) from tbl_mesajlar where baslik='" + yenimesajsablonadi + "' ") == "0")
             {
@@ -832,13 +840,13 @@ namespace WebWhatsappBotFree
                 }
                 else
                 {
-                    MessageBox.Show(yenimesajsablonadi + " Şablonu eklenemedi lütfen veritabanınızı kontrol ediniz!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show(yenimesajsablonadi + " Failed to add template please check your database!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
 
             }
             else
             {
-                MessageBox.Show(yenimesajsablonadi + " Şablon adı daha önce kullanmıştınız karışıklık olmaması için yeni yeni Şablon adında değişiklik yapınız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show(yenimesajsablonadi + " Change the template name to the new template name to avoid confusion!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             yenimesajtextbox.ResetText();
             yenimesajsablonaditextBox.ResetText();
@@ -851,7 +859,7 @@ namespace WebWhatsappBotFree
             {
                 string mesajsablonidsi = dataGridViewmesajlar.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string mesajsablonadi = dataGridViewmesajlar.Rows[e.RowIndex].Cells[2].Value.ToString();
-                DialogResult dialogResult = MessageBox.Show(mesajsablonadi + " Mesaj şablonunu silmek, bu mesajı attığınız raporlarıda silmek anlamına geliyor. \n \n Yinede silmek istiyormusunuz? ", "Uyarı!", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show(mesajsablonadi + " Deleting a message template means deleting reports that you discard.. \n \n Do you still want to delete? ", "Warning!", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
 
@@ -981,12 +989,12 @@ namespace WebWhatsappBotFree
                         }
                         string raporrridsi = raporgrid.Rows[e.RowIndex].Cells[0].Value.ToString();
                         DTTOEXCEL.excelolustur(LDB.goruntule("SELECT tbl_numaralar.adi, tbl_numaralar.soyadi, tbl_numaralar.numara, tbl_mesajlar.mesaj, tbl_log.durum, tbl_log.tarih FROM tbl_gruplar INNER JOIN tbl_islemler ON tbl_islemler.grupid = tbl_gruplar.id INNER JOIN tbl_log ON tbl_islemler.id = tbl_log.islemid INNER JOIN tbl_mesajlar ON tbl_mesajlar.id = tbl_islemler.mesajid INNER JOIN tbl_numaralar ON tbl_log.numaraid = tbl_numaralar.id AND tbl_numaralar.grup_id = tbl_gruplar.id WHERE tbl_islemler.id = " + raporrridsi + " AND tbl_log.durum = 'başarılı'"), this.fld.SelectedPath.ToString() + "/basariligonderimler" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls", "Geçerli Gönderimler");
-                        MessageBox.Show("kaydedildi");
+                        MessageBox.Show("was recorded");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Geçerli ileti bulunmamaktadır!", "Dikkat!");
+                    MessageBox.Show("No current messages!", "Attention!");
                 }
             }
             else if(e.ColumnIndex == 8 && e.RowIndex >= 0)
@@ -1004,12 +1012,12 @@ namespace WebWhatsappBotFree
                         }
                         string raporrridsi = raporgrid.Rows[e.RowIndex].Cells[0].Value.ToString();
                         DTTOEXCEL.excelolustur(LDB.goruntule("SELECT tbl_numaralar.adi, tbl_numaralar.soyadi, tbl_numaralar.numara, tbl_log.durum, tbl_log.tarih FROM tbl_gruplar INNER JOIN tbl_islemler ON tbl_islemler.grupid = tbl_gruplar.id INNER JOIN tbl_log ON tbl_islemler.id = tbl_log.islemid INNER JOIN tbl_numaralar ON tbl_log.numaraid = tbl_numaralar.id AND tbl_numaralar.grup_id = tbl_gruplar.id WHERE tbl_islemler.id =" + raporrridsi + " AND tbl_log.durum = 'başarısız'"), this.fld.SelectedPath.ToString() + "/hataliveyawhatsappyok" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls", "Geçerli Gönderimler");
-                        MessageBox.Show("kaydedildi");
+                        MessageBox.Show("was recorded");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Geçersiz veya Whatsapp Kullanılmayan Numara bulunmamaktadır!", "Dikkat!");
+                    MessageBox.Show("No Invalid or Whatsapp Unused Number!", "Attention!");
                 }
             }
             else if (e.ColumnIndex == 9 && e.RowIndex >= 0)
@@ -1027,12 +1035,12 @@ namespace WebWhatsappBotFree
                         }
                         string raporrridsi = raporgrid.Rows[e.RowIndex].Cells[0].Value.ToString();
                         DTTOEXCEL.excelolustur(LDB.goruntule("SELECT tbl_numaralar.numara, tbl_numaralar.soyadi, tbl_numaralar.adi FROM tbl_gruplar INNER JOIN tbl_islemler ON tbl_islemler.grupid = tbl_gruplar.id INNER JOIN tbl_numaralar ON tbl_numaralar.grup_id = tbl_gruplar.id WHERE tbl_islemler.id = "+ raporrridsi +" AND tbl_numaralar.kullan = 1 AND tbl_numaralar.id not IN(SELECT tbl_numaralar.id FROM tbl_gruplar INNER JOIN tbl_islemler ON tbl_islemler.grupid = tbl_gruplar.id INNER JOIN tbl_log ON tbl_islemler.id = tbl_log.islemid INNER JOIN tbl_numaralar ON tbl_log.numaraid = tbl_numaralar.id AND tbl_numaralar.grup_id = tbl_gruplar.id WHERE tbl_islemler.id = "+ raporrridsi ), this.fld.SelectedPath.ToString() + " /YarimkalanNumaralar" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".xls", "Geçerli Gönderimler");
-                        MessageBox.Show("kaydedildi");
+                        MessageBox.Show("was recorded");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Yarım Kalan Numara bulunmamaktadır!", "Dikkat!");
+                    MessageBox.Show("Unfinished Number!", "Attention!");
                 }
             }
         }
@@ -1054,7 +1062,7 @@ namespace WebWhatsappBotFree
 
         private void YenimesajsablonaditextBox_Enter(object sender, EventArgs e)
         {
-            if (yenimesajsablonaditextBox.Text == "Şablon adı")
+            if (yenimesajsablonaditextBox.Text == "Template name")
             {
                 yenimesajsablonaditextBox.Text = "";
                 yenimesajsablonaditextBox.ForeColor = Color.DimGray;
@@ -1065,9 +1073,10 @@ namespace WebWhatsappBotFree
         {
             if (yenimesajsablonaditextBox.Text == "")
             {
-                yenimesajsablonaditextBox.Text = "Şablon adı";
+                yenimesajsablonaditextBox.Text = "Template name";
                 yenimesajsablonaditextBox.ForeColor = Color.LightGray;
             }
         }
+
     }
 }
